@@ -1,0 +1,22 @@
+voronoi_cuda_64_64: voronoi_cuda_64_64.cu
+        nvcc voronoi_cuda_64_64.cu -o voronoi_cuda_64_64 -O2 -gencode arch=compute_120,code=sm_121
+voronoi_cuda_2048_2048: voronoi_cuda_2048_2048.cu
+        nvcc voronoi_cuda_2048_2048.cu -o voronoi_cuda_2048_2048 -O2 -gencode arch=compute_120,code=sm_121
+
+sampleCudaTile: sampleCudaTile.cu
+        nvcc -std=c++17 sampleCudaTile.cu -o sampleCudaTile -gencode arch=compute_120,code=sm_121
+
+simpleTile: simpleTile.cu
+        nvcc -std=c++20 simpleTile.cu -o simpleTile --enable-tile
+
+helloTile: helloTile.cu
+        nvcc -std=c++20 helloTile.cu -o helloTile --enable-tile --gencode arch=compute_120,code=sm_121
+
+vectorAdd: vectorAdd.cu
+        nvcc -std=c++20 vectorAdd.cu -o vectorAdd --enable-tile -arch=sm_100
+
+voronoiTile64: voronoiTile64.cu
+        nvcc -std=c++20 voronoiTile64.cu -o voronoiTile64 --enable-tile -gencode arch=compute_120,code=sm_121
+
+voronoiTile2048: voronoiTile2048.cu
+        nvcc -std=c++20 voronoiTile2048.cu -o voronoiTile2048 --enable-tile -gencode arch=compute_120,code=sm_121 -O2
